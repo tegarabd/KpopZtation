@@ -50,7 +50,6 @@ namespace KpopZtationBackEnd
         }
 
         [WebMethod]
-
         public string Register(string name, string email, string gender, string address, string password)
         {
             Customer customer;

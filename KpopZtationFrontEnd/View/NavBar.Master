@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavBar.master.cs" Inherits="KpopZtationFrontEnd.View.NavBar" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>KpopZtation</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form" runat="server">
+        <nav>
+            <asp:Button ID="NavLogin" runat="server" Text="Login" OnClick="NavLogin_Click" />
+            <asp:Button ID="NavRegister" runat="server" Text="Register" OnClick="NavRegister_Click" />
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
