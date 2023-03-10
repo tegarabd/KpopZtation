@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace KpopZtationFrontEnd.Controller
 {
@@ -14,6 +15,8 @@ namespace KpopZtationFrontEnd.Controller
         private readonly JsonService jsonService;
 
         private static AuthenticationController instance;
+
+        private const string USER_KEY = "user";
 
         private AuthenticationController()
         {
@@ -29,7 +32,30 @@ namespace KpopZtationFrontEnd.Controller
             }
             return instance;
         }
-        public Customer Login(string username, string password)
+
+        public void RedirectAuthenticatedPage(Page page)
+        {
+            if (page.Session[USER_KEY] == null)
+            {
+                page.Response.Redirect("Login.aspx");
+            }
+        }
+
+        public void RedirectUnauthenticatedPage(Page page)
+        {
+            if (page.Session[USER_KEY] != null)
+            {
+                page.Response.Redirect("Home.aspx");
+            }
+        }
+
+        public void Logout(MasterPage page)
+        {
+            page.Session[USER_KEY] = null;
+            page.Response.Redirect("Login.aspx");
+        }
+
+        public void Login(Page page, string username, string password)
         {
             if (username.Equals("") || password.Equals(""))
             {
@@ -44,10 +70,11 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception(response.Message);
             }
 
-            return response.Content;
+            page.Session[USER_KEY] = response.Content;
+            page.Response.Redirect("Home.aspx");
         }
 
-        public Customer Register(string name, string email, string gender, string address, string password)
+        public void Register(Page page, string name, string email, string gender, string address, string password)
         {
             if (name.Equals("") || email.Equals("") || gender.Equals("") || address.Equals("") || password.Equals(""))
             {
@@ -82,7 +109,7 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception(response.Message);
             }
 
-            return response.Content;
+            page.Response.Redirect("Login.aspx");
         }
     }
 }

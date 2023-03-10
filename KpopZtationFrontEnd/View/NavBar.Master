@@ -9,11 +9,22 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <style>
+        .nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .logo {
+            margin-right: auto;
+        }
+    </style>
     <form id="form" runat="server">
-        <nav>
-            <h1 style="margin-right: auto" >KpopZtation</h1>
-            <asp:Button ID="NavLogin" runat="server" Text="Login" OnClick="NavLogin_Click" />
-            <asp:Button ID="NavRegister" runat="server" Text="Register" OnClick="NavRegister_Click" />
+        <nav class="nav">
+            <h1 class="logo" >KpopZtation</h1>
+            <asp:Button ID="NavLogin" runat="server" Text="Login" OnClick="NavLogin_Click" Visible="false" />
+            <asp:Button ID="NavRegister" runat="server" Text="Register" OnClick="NavRegister_Click" Visible="false"/>
+            <asp:Button ID="NavLogout" runat="server" Text="Logout" OnClick="NavLogout_Click" Visible="false" />
         </nav>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">

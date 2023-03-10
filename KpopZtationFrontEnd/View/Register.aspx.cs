@@ -13,7 +13,7 @@ namespace KpopZtationFrontEnd.View
         private AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            authenticationController.RedirectUnauthenticatedPage(this);
         }
 
         protected void ButtonRegister_Click(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace KpopZtationFrontEnd.View
 
             try
             {
-                authenticationController.Register(name, email, gender, address, password);
+                authenticationController.Register(this, name, email, gender, address, password);
             }
             catch (Exception ex)
             {
@@ -34,7 +34,6 @@ namespace KpopZtationFrontEnd.View
                 return;
             }
 
-            Response.Redirect("Login.aspx");
         }
     }
 }
