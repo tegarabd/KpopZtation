@@ -25,8 +25,10 @@
                 <asp:Label ID="LabelGender" runat="server" Text="Gender"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:RadioButton ID="RadioButtonMale" runat="server" Text="Male" GroupName="Gender" />
-                <asp:RadioButton ID="RadioButtonFemale" runat="server" Text="Female" GroupName="Gender" />
+                <asp:RadioButtonList ID="RadioButtonListGender" runat="server">
+                    <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
+                    <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                </asp:RadioButtonList>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -43,6 +45,11 @@
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="TextBoxPassword" runat="server" TextMode="Password"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell ColumnSpan="2">
+                <asp:Label ID="LabelResult" ForeColor="Red" runat="server" Text="" Width="100%"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>

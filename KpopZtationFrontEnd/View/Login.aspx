@@ -22,7 +22,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell ColumnSpan="2">
-                <asp:Label ID="LabelResult" runat="server" Text="" Width="100%"></asp:Label>
+                <asp:Label ID="LabelResult" ForeColor="Red" runat="server" Text="" Width="100%"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>

@@ -69,22 +69,13 @@ namespace KpopZtationFrontEnd.View
         protected global::System.Web.UI.WebControls.Label LabelGender;
 
         /// <summary>
-        /// RadioButtonMale control.
+        /// RadioButtonListGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButtonMale;
-
-        /// <summary>
-        /// RadioButtonFemale control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButtonFemale;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListGender;
 
         /// <summary>
         /// LabelAddress control.
@@ -121,6 +112,15 @@ namespace KpopZtationFrontEnd.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPassword;
+
+        /// <summary>
+        /// LabelResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelResult;
 
         /// <summary>
         /// ButtonRegister control.

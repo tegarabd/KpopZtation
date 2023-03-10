@@ -21,11 +21,10 @@ namespace KpopZtationFrontEnd.View
         {
             string username = TextBoxUsername.Text;
             string password = TextBoxPassword.Text;
-            Customer customer;
 
             try
             {
-                customer = authenticationController.Login(username, password);
+                authenticationController.Login(username, password);
             }
             catch (Exception ex)
             {
@@ -33,7 +32,7 @@ namespace KpopZtationFrontEnd.View
                 return;
             }
 
-            LabelResult.Text = customer.CustomerName;
+            Response.Redirect("Home.aspx");
         }
     }
 }

@@ -11,6 +11,7 @@
 <body>
     <form id="form" runat="server">
         <nav>
+            <h1 style="margin-right: auto" >KpopZtation</h1>
             <asp:Button ID="NavLogin" runat="server" Text="Login" OnClick="NavLogin_Click" />
             <asp:Button ID="NavRegister" runat="server" Text="Register" OnClick="NavRegister_Click" />
         </nav>
