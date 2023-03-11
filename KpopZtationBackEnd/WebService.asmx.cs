@@ -20,6 +20,7 @@ namespace KpopZtationBackEnd
     {
         private readonly JsonHandler jsonHandler = new JsonHandler();
         private readonly AuthenticationHandler authenticationHandler = new AuthenticationHandler();
+        private readonly CustomerHandler customerHandler = new CustomerHandler();
 
         private const string SUCCESS_MESSAGE = "Success";
 
@@ -56,6 +57,33 @@ namespace KpopZtationBackEnd
             try
             {
                 customer = authenticationHandler.Register(name, email, gender, address, password);
+            }
+            catch (Exception e)
+            {
+                return jsonHandler.Encode(new WebServiceResponse<Customer>()
+                {
+                    Ok = false,
+                    Message = e.Message,
+                    Content = null
+                });
+            }
+
+            return jsonHandler.Encode(new WebServiceResponse<Customer>()
+            {
+                Ok = true,
+                Message = SUCCESS_MESSAGE,
+                Content = customer
+            });
+        }
+
+        [WebMethod]
+
+        public string GetCustomerById(int id)
+        {
+            Customer customer;
+            try
+            {
+                customer = customerHandler.GetCustomerById(id);
             }
             catch (Exception e)
             {

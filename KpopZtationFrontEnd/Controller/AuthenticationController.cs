@@ -16,7 +16,9 @@ namespace KpopZtationFrontEnd.Controller
 
         private static AuthenticationController instance;
 
-        private const string USER_KEY = "user";
+        private const string SESSION_KEY = "user_session";
+        private const string COOKIE_KEY = "user_cookie";
+        private const int COOKIE_EXPIRE_IN_HOUR = 1;
 
         private AuthenticationController()
         {
@@ -35,15 +37,31 @@ namespace KpopZtationFrontEnd.Controller
 
         public void RedirectAuthenticatedPage(Page page)
         {
-            if (page.Session[USER_KEY] == null)
+            if (page.Session[SESSION_KEY] == null && page.Request.Cookies[COOKIE_KEY] == null)
             {
                 page.Response.Redirect("Login.aspx");
+                return;
+            }
+            
+            if (page.Request.Cookies[COOKIE_KEY] != null)
+            {
+                int id = Int32.Parse(page.Request.Cookies[COOKIE_KEY].Value);
+                WebServiceResponse<Customer> response = jsonService
+                    .Decode<WebServiceResponse<Customer>>(webService.GetCustomerById(id));
+
+                if (!response.Ok)
+                {
+                    page.Response.Redirect("Login.aspx");
+                    return;
+                }
+
+                page.Session[SESSION_KEY] = response.Content;
             }
         }
 
         public void RedirectUnauthenticatedPage(Page page)
         {
-            if (page.Session[USER_KEY] != null)
+            if (page.Session[SESSION_KEY] != null)
             {
                 page.Response.Redirect("Home.aspx");
             }
@@ -51,11 +69,21 @@ namespace KpopZtationFrontEnd.Controller
 
         public void Logout(MasterPage page)
         {
-            page.Session[USER_KEY] = null;
+            page.Session.Remove(SESSION_KEY);
+            string[] cookies = page.Request.Cookies.AllKeys;
+            Array.ForEach(cookies, cookie =>
+            {
+                page.Response.Cookies[cookie].Expires = DateTime.Now.AddHours(-COOKIE_EXPIRE_IN_HOUR);
+            });
             page.Response.Redirect("Login.aspx");
         }
 
-        public void Login(Page page, string username, string password)
+        public Customer GetCurrentCustomer(MasterPage page)
+        {
+            return (Customer) page.Session[SESSION_KEY];
+        }
+
+        public void Login(Page page, string username, string password, bool remember)
         {
             if (username.Equals("") || password.Equals(""))
             {
@@ -70,7 +98,17 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception(response.Message);
             }
 
-            page.Session[USER_KEY] = response.Content;
+            if (remember)
+            {
+                HttpCookie cookie = new HttpCookie(COOKIE_KEY)
+                {
+                    Value = response.Content.CustomerID.ToString(),
+                    Expires = DateTime.Now.AddHours(COOKIE_EXPIRE_IN_HOUR)
+                };
+                page.Response.Cookies.Add(cookie);
+            }
+
+            page.Session[SESSION_KEY] = response.Content;
             page.Response.Redirect("Home.aspx");
         }
 

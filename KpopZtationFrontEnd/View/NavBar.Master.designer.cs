@@ -33,6 +33,42 @@ namespace KpopZtationFrontEnd.View
         protected global::System.Web.UI.HtmlControls.HtmlForm form;
 
         /// <summary>
+        /// NavHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NavHome;
+
+        /// <summary>
+        /// NavCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NavCart;
+
+        /// <summary>
+        /// NavTransaction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NavTransaction;
+
+        /// <summary>
+        /// NavProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NavProfile;
+
+        /// <summary>
         /// NavLogin control.
         /// </summary>
         /// <remarks>
@@ -58,6 +94,15 @@ namespace KpopZtationFrontEnd.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NavLogout;
+
+        /// <summary>
+        /// LabelUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelUsername;
 
         /// <summary>
         /// ContentPlaceHolder control.

@@ -22,6 +22,11 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell ColumnSpan="2">
+                <asp:CheckBox ID="CheckBoxRememberMe" runat="server" Text="Remember Me" />
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell ColumnSpan="2">
                 <asp:Label ID="LabelResult" ForeColor="Red" runat="server" Text="" Width="100%"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>

@@ -10,10 +10,9 @@ namespace KpopZtationFrontEnd.View
 {
     public partial class Home : System.Web.UI.Page
     {
-        private AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-            authenticationController.RedirectAuthenticatedPage(this);
+
         }
     }
 }

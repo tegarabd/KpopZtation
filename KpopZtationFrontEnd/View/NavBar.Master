@@ -13,6 +13,7 @@
         .nav {
             display: flex;
             gap: 1rem;
+            align-items: center;
         }
 
         .logo {
@@ -22,9 +23,18 @@
     <form id="form" runat="server">
         <nav class="nav">
             <h1 class="logo" >KpopZtation</h1>
-            <asp:Button ID="NavLogin" runat="server" Text="Login" OnClick="NavLogin_Click" Visible="false" />
-            <asp:Button ID="NavRegister" runat="server" Text="Register" OnClick="NavRegister_Click" Visible="false"/>
+            <asp:Button ID="NavHome" runat="server" Text="Home" OnClick="Nav_Click"/>
+
+            <asp:Button ID="NavCart" runat="server" Text="Cart" OnClick="Nav_Click" Visible="false"/>
+            <asp:Button ID="NavTransaction" runat="server" Text="Transaction" OnClick="Nav_Click" Visible="false"/>
+            <asp:Button ID="NavProfile" runat="server" Text="Profile" OnClick="Nav_Click" Visible="false"/>
+
+            <asp:Button ID="NavLogin" runat="server" Text="Login" OnClick="Nav_Click" Visible="false" />
+            <asp:Button ID="NavRegister" runat="server" Text="Register" OnClick="Nav_Click" Visible="false"/>
+
             <asp:Button ID="NavLogout" runat="server" Text="Logout" OnClick="NavLogout_Click" Visible="false" />
+
+            <asp:Label ID="LabelUsername" runat="server" Text="Not Logged In"></asp:Label>
         </nav>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">

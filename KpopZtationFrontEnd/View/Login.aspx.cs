@@ -21,10 +21,11 @@ namespace KpopZtationFrontEnd.View
         {
             string username = TextBoxUsername.Text;
             string password = TextBoxPassword.Text;
+            bool remember = CheckBoxRememberMe.Checked;
 
             try
             {
-                authenticationController.Login(this, username, password);
+                authenticationController.Login(this, username, password, remember);
             }
             catch (Exception ex)
             {

@@ -14,7 +14,12 @@ namespace KpopZtationFrontEnd.View
         private AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Customer customer = (Customer) Session["user"];
+            Customer customer = authenticationController.GetCurrentCustomer(this);
+            ChangeNavVisibilityByRole(customer);
+        }
+
+        private void ChangeNavVisibilityByRole(Customer customer)
+        {
             if (customer == null)
             {
                 NavLogin.Visible = true;
@@ -22,34 +27,29 @@ namespace KpopZtationFrontEnd.View
             }
             else
             {
+                LabelUsername.Text = customer.CustomerName;
+                NavTransaction.Visible = true;
+                NavProfile.Visible = true;
                 NavLogout.Visible = true;
 
-                switch (customer.CustomerRole)
+                if (customer.CustomerRole == "Customer")
                 {
-                    case "Guest":
-                        break;
-                    case "Customer":
-                        break;
-                    case "Admin":
-                        break;
+                    NavCart.Visible = true;
                 }
-
             }
         }
 
-        protected void NavLogin_Click(object sender, EventArgs e)
+        protected void Nav_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
-        }
-
-        protected void NavRegister_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Register.aspx");
+            Button button = (Button) sender;
+            string page = button.ID.Replace("Nav", "") + ".aspx";
+            Response.Redirect(page);
         }
 
         protected void NavLogout_Click(object sender, EventArgs e)
         {
             authenticationController.Logout(this);
         }
+
     }
 }

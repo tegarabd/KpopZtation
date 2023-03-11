@@ -96,6 +96,7 @@
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Handler\JsonHandler.cs" />
     <Compile Include="Model\Album.cs">
       <DependentUpon>Model.tt</DependentUpon>
