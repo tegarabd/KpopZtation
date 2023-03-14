@@ -35,6 +35,8 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         private System.Threading.SendOrPostCallback GetCustomerByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetArtistsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -81,6 +83,9 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         /// <remarks/>
         public event GetCustomerByIdCompletedEventHandler GetCustomerByIdCompleted;
+        
+        /// <remarks/>
+        public event GetArtistsCompletedEventHandler GetArtistsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -180,6 +185,33 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetArtists", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetArtists() {
+            object[] results = this.Invoke("GetArtists", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetArtistsAsync() {
+            this.GetArtistsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetArtistsAsync(object userState) {
+            if ((this.GetArtistsOperationCompleted == null)) {
+                this.GetArtistsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetArtistsOperationCompleted);
+            }
+            this.InvokeAsync("GetArtists", new object[0], this.GetArtistsOperationCompleted, userState);
+        }
+        
+        private void OnGetArtistsOperationCompleted(object arg) {
+            if ((this.GetArtistsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetArtistsCompleted(this, new GetArtistsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -263,6 +295,32 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         private object[] results;
         
         internal GetCustomerByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetArtistsCompletedEventHandler(object sender, GetArtistsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetArtistsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetArtistsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

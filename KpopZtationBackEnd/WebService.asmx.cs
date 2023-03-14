@@ -21,8 +21,35 @@ namespace KpopZtationBackEnd
         private readonly JsonHandler jsonHandler = new JsonHandler();
         private readonly AuthenticationHandler authenticationHandler = new AuthenticationHandler();
         private readonly CustomerHandler customerHandler = new CustomerHandler();
+        private readonly ArtistHandler artistHandler = new ArtistHandler();
 
         private const string SUCCESS_MESSAGE = "Success";
+
+        public string ProcessRequest<T>(Delegate method, params object[] args)
+        {
+            T content;
+            try
+            {
+                content = (T) method.DynamicInvoke(args);
+            }
+            catch (Exception e)
+            {
+                return jsonHandler.Encode(new WebServiceResponse<T>()
+                {
+                    Ok = false,
+                    Message = e.Message,
+                    Content = default
+                });
+            }
+
+            return jsonHandler.Encode(new WebServiceResponse<T>()
+            {
+                Ok = true,
+                Message = SUCCESS_MESSAGE,
+                Content = content
+            });
+
+        }
 
         [WebMethod]
         public string Login(string username, string password)
@@ -77,7 +104,6 @@ namespace KpopZtationBackEnd
         }
 
         [WebMethod]
-
         public string GetCustomerById(int id)
         {
             Customer customer;
@@ -102,5 +128,13 @@ namespace KpopZtationBackEnd
                 Content = customer
             });
         }
+
+        [WebMethod]
+        public string GetArtists()
+        {
+            return ProcessRequest<List<Artist>>(new Func<List<Artist>>(artistHandler.GetArtists));
+        }
+
+        
     }
 }

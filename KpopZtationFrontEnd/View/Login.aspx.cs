@@ -14,7 +14,7 @@ namespace KpopZtationFrontEnd.View
         private AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-            authenticationController.RedirectUnauthenticatedPage(this);
+            authenticationController.RedirectUnauthenticatedPage(Master);
         }
 
         protected void ButtonLogin_Click(object sender, EventArgs e)

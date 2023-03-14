@@ -1,5 +1,6 @@
 ﻿using KpopZtationFrontEnd.Model;
 using KpopZtationFrontEnd.Service;
+using KpopZtationFrontEnd.View;
 using KpopZtationFrontEnd.WebServiceReference;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace KpopZtationFrontEnd.Controller
             }
         }
 
-        public void RedirectUnauthenticatedPage(Page page)
+        public void RedirectUnauthenticatedPage(MasterPage page)
         {
             if (page.Session[SESSION_KEY] != null)
             {
@@ -112,7 +113,7 @@ namespace KpopZtationFrontEnd.Controller
             page.Response.Redirect("Home.aspx");
         }
 
-        public void Register(Page page, string name, string email, string gender, string address, string password)
+        public void Register(MasterPage page, string name, string email, string gender, string address, string password)
         {
             if (name.Equals("") || email.Equals("") || gender.Equals("") || address.Equals("") || password.Equals(""))
             {
