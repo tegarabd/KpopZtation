@@ -5,21 +5,11 @@
 <html>
 <head runat="server">
     <title>KpopZtation</title>
+    <link rel="stylesheet" href="Style/style.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <style>
-        .nav {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .logo {
-            margin-right: auto;
-        }
-    </style>
     <form id="form" runat="server">
         <nav class="nav">
             <h1 class="logo" >KpopZtation</h1>
@@ -36,7 +26,7 @@
 
             <asp:Label ID="LabelUsername" runat="server" Text="Not Logged In"></asp:Label>
         </nav>
-        <div>
+        <div class="main">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
         </div>

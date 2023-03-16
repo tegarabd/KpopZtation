@@ -131,6 +131,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\WebServiceReference\WebService.disco" />
+    <Content Include="View\Style\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

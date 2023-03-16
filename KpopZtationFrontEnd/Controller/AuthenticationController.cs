@@ -70,18 +70,24 @@ namespace KpopZtationFrontEnd.Controller
 
         public void Logout(MasterPage page)
         {
-            page.Session.Remove(SESSION_KEY);
-            string[] cookies = page.Request.Cookies.AllKeys;
-            Array.ForEach(cookies, cookie =>
-            {
-                page.Response.Cookies[cookie].Expires = DateTime.Now.AddHours(-COOKIE_EXPIRE_IN_HOUR);
-            });
+            page.Session.Clear();
+            page.Response.Cookies.Clear();
             page.Response.Redirect("Login.aspx");
         }
 
         public Customer GetCurrentCustomer(MasterPage page)
         {
             return (Customer) page.Session[SESSION_KEY];
+        }
+
+        public bool IsCurrentCustomerAuthorizedByRole(MasterPage page, string role)
+        {
+            Customer customer = GetCurrentCustomer(page);
+            if (customer == null)
+            {
+                return role == "Guest";
+            }
+            return customer.CustomerRole == role;
         }
 
         public void Login(Page page, string username, string password, bool remember)

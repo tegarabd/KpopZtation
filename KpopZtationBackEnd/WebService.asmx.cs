@@ -3,6 +3,8 @@ using KpopZtationBackEnd.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Web;
 using System.Web.Services;
 
@@ -27,19 +29,26 @@ namespace KpopZtationBackEnd
 
         public string ProcessRequest<T>(Delegate method, params object[] args)
         {
-            T content;
+            T content = default;
             try
             {
-                content = (T) method.DynamicInvoke(args);
+                content = (T)method.Method.Invoke(method.Target, args);
             }
-            catch (Exception e)
+            catch (TargetInvocationException ex)
             {
-                return jsonHandler.Encode(new WebServiceResponse<T>()
+                try
                 {
-                    Ok = false,
-                    Message = e.Message,
-                    Content = default
-                });
+                    ExceptionDispatchInfo.Capture(ex.InnerException).Throw();
+                }
+                catch (Exception e)
+                {
+                    return jsonHandler.Encode(new WebServiceResponse<T>()
+                    {
+                        Ok = false,
+                        Message = e.Message,
+                        Content = default
+                    });
+                }
             }
 
             return jsonHandler.Encode(new WebServiceResponse<T>()
@@ -54,79 +63,41 @@ namespace KpopZtationBackEnd
         [WebMethod]
         public string Login(string username, string password)
         {
-            Customer customer;
-            try
-            {
-                customer = authenticationHandler.Login(username, password);
-            }
-            catch (Exception e)
-            {
-                return jsonHandler.Encode(new WebServiceResponse<Customer>()
-                {
-                    Ok = false,
-                    Message = e.Message,
-                    Content = null
-                });
-            }
-            
-            return jsonHandler.Encode(new WebServiceResponse<Customer>()
-            {
-                Ok = true,
-                Message = SUCCESS_MESSAGE,
-                Content = customer
-            });
+            //Customer customer;
+            //try
+            //{
+            //    customer = authenticationHandler.Login(username, password);
+            //}
+            //catch (Exception e)
+            //{
+            //    return jsonHandler.Encode(new WebServiceResponse<Customer>()
+            //    {
+            //        Ok = false,
+            //        Message = e.Message,
+            //        Content = default
+            //    });
+            //}
+
+            //return jsonHandler.Encode(new WebServiceResponse<Customer>()
+            //{
+            //    Ok = true,
+            //    Message = SUCCESS_MESSAGE,
+            //    Content = customer
+            //});
+
+            return ProcessRequest<Customer>(new Func<string, string, Customer>(authenticationHandler.Login), username, password);
         }
 
         [WebMethod]
         public string Register(string name, string email, string gender, string address, string password)
         {
-            Customer customer;
-            try
-            {
-                customer = authenticationHandler.Register(name, email, gender, address, password);
-            }
-            catch (Exception e)
-            {
-                return jsonHandler.Encode(new WebServiceResponse<Customer>()
-                {
-                    Ok = false,
-                    Message = e.Message,
-                    Content = null
-                });
-            }
-
-            return jsonHandler.Encode(new WebServiceResponse<Customer>()
-            {
-                Ok = true,
-                Message = SUCCESS_MESSAGE,
-                Content = customer
-            });
+            return ProcessRequest<Customer>(new Func<string, string, string, string, string, Customer>(authenticationHandler.Register), name, email, gender, address, password);
         }
 
         [WebMethod]
         public string GetCustomerById(int id)
         {
-            Customer customer;
-            try
-            {
-                customer = customerHandler.GetCustomerById(id);
-            }
-            catch (Exception e)
-            {
-                return jsonHandler.Encode(new WebServiceResponse<Customer>()
-                {
-                    Ok = false,
-                    Message = e.Message,
-                    Content = null
-                });
-            }
-
-            return jsonHandler.Encode(new WebServiceResponse<Customer>()
-            {
-                Ok = true,
-                Message = SUCCESS_MESSAGE,
-                Content = customer
-            });
+            return ProcessRequest<Customer>(new Func<int, Customer>(customerHandler.GetCustomerById), id);
         }
 
         [WebMethod]
@@ -135,6 +106,6 @@ namespace KpopZtationBackEnd
             return ProcessRequest<List<Artist>>(new Func<List<Artist>>(artistHandler.GetArtists));
         }
 
-        
+
     }
 }

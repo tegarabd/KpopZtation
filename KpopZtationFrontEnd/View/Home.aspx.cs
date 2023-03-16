@@ -11,13 +11,18 @@ namespace KpopZtationFrontEnd.View
 {
     public partial class Home : System.Web.UI.Page
     {
+        public AuthenticationController authenticationController = AuthenticationController.GetInstance();
         private readonly ArtistController artistController = ArtistController.GetInstance();
+        public List<Artist> artists = new List<Artist>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Artist> artists = artistController.GetArtists();
-            GridViewArtists.DataSource = artists;
-            GridViewArtists.DataBind();
+            
+            artists = artistController.GetArtists();
         }
 
+        protected void ButtonInsertArtist_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -39,11 +39,7 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception(response.Message);
             }
 
-            return response.Content.Select(artist =>
-            {
-                artist.ArtistImage = "~/Assets/Artists/" + artist.ArtistImage;
-                return artist;
-            }).ToList();
+            return response.Content;
         }
     }
 }
