@@ -42,7 +42,7 @@ namespace KpopZtationFrontEnd.View
         protected void Nav_Click(object sender, EventArgs e)
         {
             Button button = (Button) sender;
-            string page = button.ID.Replace("Nav", "") + ".aspx";
+            string page = button.ID.Replace("Nav", "~/View/") + ".aspx";
             Response.Redirect(page);
         }
 

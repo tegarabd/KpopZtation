@@ -57,34 +57,11 @@ namespace KpopZtationBackEnd
                 Message = SUCCESS_MESSAGE,
                 Content = content
             });
-
         }
 
         [WebMethod]
         public string Login(string username, string password)
         {
-            //Customer customer;
-            //try
-            //{
-            //    customer = authenticationHandler.Login(username, password);
-            //}
-            //catch (Exception e)
-            //{
-            //    return jsonHandler.Encode(new WebServiceResponse<Customer>()
-            //    {
-            //        Ok = false,
-            //        Message = e.Message,
-            //        Content = default
-            //    });
-            //}
-
-            //return jsonHandler.Encode(new WebServiceResponse<Customer>()
-            //{
-            //    Ok = true,
-            //    Message = SUCCESS_MESSAGE,
-            //    Content = customer
-            //});
-
             return ProcessRequest<Customer>(new Func<string, string, Customer>(authenticationHandler.Login), username, password);
         }
 
@@ -106,6 +83,17 @@ namespace KpopZtationBackEnd
             return ProcessRequest<List<Artist>>(new Func<List<Artist>>(artistHandler.GetArtists));
         }
 
+        [WebMethod]
+        public string GetArtistById(int id)
+        {
+            return ProcessRequest<Artist>(new Func<int, Artist>(artistHandler.GetArtistById), id);
+        }
+
+        [WebMethod]
+        public string InsertArtist(string name, string image)
+        {
+            return ProcessRequest<Artist>(new Func<string, string, Artist>(artistHandler.InsertArtist), name, image);
+        }
 
     }
 }

@@ -19,11 +19,47 @@
     margin-right: auto;
 }
 
-input[type="submit"] {
+input[type="submit"], a {
     border: none;
     background-color: lightseagreen;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    font: inherit;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
+    margin: 0.5rem 0;
+    display: block;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    transition: 200ms;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+    .card:hover {
+        background-color: whitesmoke;
+    }
+
+    .card img {
+        border-radius: 50%;
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .card .card-operation {
+        display: flex;
+        justify-content: space-around;
+        gap: 0.5rem;
+    }

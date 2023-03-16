@@ -7,17 +7,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace KpopZtationFrontEnd.View
+namespace KpopZtationFrontEnd.View.ArtistPage
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class Detail : System.Web.UI.Page
     {
-        public AuthenticationController authenticationController = AuthenticationController.GetInstance();
         private readonly ArtistController artistController = ArtistController.GetInstance();
-        public List<Artist> artists = new List<Artist>();
+        public Artist Artist;
         protected void Page_Load(object sender, EventArgs e)
         {
-            artists = artistController.GetArtists();
+            int id = Convert.ToInt32(Request.QueryString.Get("id"));
+            Artist = artistController.GetArtistById(id);
         }
-
     }
 }

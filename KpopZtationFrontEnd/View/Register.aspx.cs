@@ -18,6 +18,7 @@ namespace KpopZtationFrontEnd.View
 
         protected void ButtonRegister_Click(object sender, EventArgs e)
         {
+            LabelResult.Text = "";
             string name = TextBoxUsername.Text;
             string email = TextBoxEmail.Text;
             string gender = RadioButtonListGender.SelectedValue;
@@ -31,7 +32,6 @@ namespace KpopZtationFrontEnd.View
             catch (Exception ex)
             {
                 LabelResult.Text = ex.Message;
-                return;
             }
 
         }

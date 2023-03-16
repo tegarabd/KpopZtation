@@ -59,6 +59,35 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetArtistById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArtistByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArtistByIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="image" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertArtistResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LoginSoapIn">
@@ -85,6 +114,18 @@
   <wsdl:message name="GetArtistsSoapOut">
     <wsdl:part name="parameters" element="tns:GetArtistsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetArtistByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArtistById" />
+  </wsdl:message>
+  <wsdl:message name="GetArtistByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArtistByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertArtist" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertArtistResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -101,6 +142,14 @@
     <wsdl:operation name="GetArtists">
       <wsdl:input message="tns:GetArtistsSoapIn" />
       <wsdl:output message="tns:GetArtistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArtistById">
+      <wsdl:input message="tns:GetArtistByIdSoapIn" />
+      <wsdl:output message="tns:GetArtistByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtist">
+      <wsdl:input message="tns:InsertArtistSoapIn" />
+      <wsdl:output message="tns:InsertArtistSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -141,6 +190,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetArtistById">
+      <soap:operation soapAction="http://tempuri.org/GetArtistById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtist">
+      <soap:operation soapAction="http://tempuri.org/InsertArtist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -173,6 +240,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetArtists">
       <soap12:operation soapAction="http://tempuri.org/GetArtists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArtistById">
+      <soap12:operation soapAction="http://tempuri.org/GetArtistById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtist">
+      <soap12:operation soapAction="http://tempuri.org/InsertArtist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

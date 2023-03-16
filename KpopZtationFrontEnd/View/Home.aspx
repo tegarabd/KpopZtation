@@ -4,37 +4,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <h3>Artists</h3>
-    <asp:Button ID="ButtonInsertArtist" runat="server" Text="Insert" OnClick="ButtonInsertArtist_Click" />
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% foreach (var artist in artists)
-                { %>
-            <tr>
-                <td><%= artist.ArtistID %></td>
-                <td><%= artist.ArtistName %></td>
-                <td>
-                    <img width="150" height="150" src="../Assets/Artists/<%= artist.ArtistImage %>" /></td>
-                <td>
-                    <a href="ArtistDetail.aspx?id=<%= artist.ArtistID %>">Detail</a>
-                    <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
-                        { %>
-                    <a href="ArtistUpdate.aspx?id=<%= artist.ArtistID %>">Update</a>
-                    <a href="ArtistDelete.aspx?id=<%= artist.ArtistID %>">Delete</a>
-                    <% } %>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-
-
-
+    <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
+        { %>
+    <a href="ArtistPage/Insert.aspx">Insert</a>
+    <% } %>
+    <div class="grid">
+        <% foreach (var artist in artists)
+            { %>
+        <div class="card">
+            <img src="../Assets/Artists/<%= artist.ArtistImage %>" />
+            <h3><%= artist.ArtistName %></h3>
+            <div class="card-operation">
+                <a href="ArtistPage/Detail.aspx?id=<%= artist.ArtistID %>">Detail</a>
+                <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
+                    { %>
+                <a href="ArtistPage/Update.aspx?id=<%= artist.ArtistID %>">Update</a>
+                <a href="ArtistPage/Delete.aspx?id=<%= artist.ArtistID %>">Delete</a>
+                <% } %>
+            </div>
+        </div>
+        <% } %>
+    </div>
 </asp:Content>

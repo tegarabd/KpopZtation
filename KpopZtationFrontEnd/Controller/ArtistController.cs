@@ -3,8 +3,11 @@ using KpopZtationFrontEnd.Service;
 using KpopZtationFrontEnd.WebServiceReference;
 using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 using System.Linq;
 using System.Web;
+using System.IO;
+using System.Web.UI;
 
 namespace KpopZtationFrontEnd.Controller
 {
@@ -40,6 +43,55 @@ namespace KpopZtationFrontEnd.Controller
             }
 
             return response.Content;
+        }
+
+        public Artist GetArtistById(int id)
+        {
+            WebServiceResponse<Artist> response = jsonService
+                .Decode<WebServiceResponse<Artist>>(webService.GetArtistById(id));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            return response.Content;
+        }
+
+        public void InsertArtist(Page page, string name, FileUpload imageFile)
+        {
+            if (name.Equals(""))
+            {
+                throw new Exception("Artist Name must be filled");
+            }
+
+            if (!imageFile.HasFile)
+            {
+                throw new Exception("Artist Image must be choosen");
+            }
+
+            string fileExtension = Path.GetExtension(imageFile.FileName);
+            int fileSize = imageFile.PostedFile.ContentLength;
+
+            if (!(new List<string>() { ".png", ".jpg", ".jpeg", ".jfif" }.Contains(fileExtension)))
+            {
+                throw new Exception("Artist Image file extension must be .png, .jpg, .jpeg, or .jfif");
+            }
+
+            if (fileSize >= 1024 * 1024 * 2)
+            {
+                throw new Exception("Artist Image file size must be lower than 2MB");
+            }
+
+            WebServiceResponse<Artist> response = jsonService
+                .Decode<WebServiceResponse<Artist>>(webService.InsertArtist(name, imageFile.FileName));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            imageFile.SaveAs(page.Server.MapPath("~/Assets/Artists/" + imageFile.FileName));
         }
     }
 }

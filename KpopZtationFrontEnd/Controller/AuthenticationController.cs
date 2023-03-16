@@ -40,7 +40,7 @@ namespace KpopZtationFrontEnd.Controller
         {
             if (page.Session[SESSION_KEY] == null && page.Request.Cookies[COOKIE_KEY] == null)
             {
-                page.Response.Redirect("Login.aspx");
+                page.Response.Redirect("~/View/Login.aspx");
                 return;
             }
             
@@ -52,7 +52,7 @@ namespace KpopZtationFrontEnd.Controller
 
                 if (!response.Ok)
                 {
-                    page.Response.Redirect("Login.aspx");
+                    page.Response.Redirect("~/View/Login.aspx");
                     return;
                 }
 
@@ -64,7 +64,7 @@ namespace KpopZtationFrontEnd.Controller
         {
             if (page.Session[SESSION_KEY] != null)
             {
-                page.Response.Redirect("Home.aspx");
+                page.Response.Redirect("~/View/Home.aspx");
             }
         }
 
@@ -72,7 +72,7 @@ namespace KpopZtationFrontEnd.Controller
         {
             page.Session.Clear();
             page.Response.Cookies.Clear();
-            page.Response.Redirect("Login.aspx");
+            page.Response.Redirect("~/View/Login.aspx");
         }
 
         public Customer GetCurrentCustomer(MasterPage page)
@@ -116,7 +116,7 @@ namespace KpopZtationFrontEnd.Controller
             }
 
             page.Session[SESSION_KEY] = response.Content;
-            page.Response.Redirect("Home.aspx");
+            page.Response.Redirect("~/View/Home.aspx");
         }
 
         public void Register(MasterPage page, string name, string email, string gender, string address, string password)
@@ -154,7 +154,7 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception(response.Message);
             }
 
-            page.Response.Redirect("Login.aspx");
+            page.Response.Redirect("~/View/Login.aspx");
         }
     }
 }

@@ -18,7 +18,12 @@ namespace KpopZtationBackEnd.Handler
             return artistRepository.GetArtists();
         }
 
-        public void InsertArtist(string name, string image)
+        public Artist GetArtistById(int id)
+        {
+            return artistRepository.GetArtistById(id);
+        }
+
+        public Artist InsertArtist(string name, string image)
         {
             Artist artistRegisteredName = artistRepository.GetArtistByName(name);
             if (artistRegisteredName != null)
@@ -27,6 +32,7 @@ namespace KpopZtationBackEnd.Handler
             }
             Artist artist = artistFactory.Create(name, image);
             artistRepository.InsertArtist(artist);
+            return artist;
         }
     }
 }

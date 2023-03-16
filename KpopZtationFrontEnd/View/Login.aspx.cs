@@ -19,6 +19,7 @@ namespace KpopZtationFrontEnd.View
 
         protected void ButtonLogin_Click(object sender, EventArgs e)
         {
+            LabelResult.Text = "";
             string username = TextBoxUsername.Text;
             string password = TextBoxPassword.Text;
             bool remember = CheckBoxRememberMe.Checked;
@@ -30,7 +31,6 @@ namespace KpopZtationFrontEnd.View
             catch (Exception ex)
             {
                 LabelResult.Text = ex.Message;
-                return;
             }
 
         }
