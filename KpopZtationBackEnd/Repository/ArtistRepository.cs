@@ -58,6 +58,7 @@ namespace KpopZtationBackEnd.Repository
 
         public void DeleteArtist(Artist artist)
         {
+            Db.Albums.RemoveRange(artist.Albums);
             Db.Artists.Remove(artist);
             Db.SaveChanges();
         }

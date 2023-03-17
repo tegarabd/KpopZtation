@@ -63,8 +63,10 @@
           <Property Name="TransactionDate" Type="date" Nullable="false" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Album__ArtistID__276EDEB3">
-          <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
+        <Association Name="FK__Album__ArtistID__34C8D9D1">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Artist">
@@ -75,8 +77,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cart__AlbumID__31EC6D26">
-          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+        <Association Name="FK__Cart__AlbumID__36B12243">
+          <End Role="Album" Type="Self.Album" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Album">
@@ -87,8 +91,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cart__CustomerID__30F848ED">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK__Cart__CustomerID__35BCFE0A">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -99,8 +105,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Album__2E1BDC42">
-          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+        <Association Name="FK__Transacti__Album__38996AB5">
+          <End Role="Album" Type="Self.Album" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Album">
@@ -111,8 +119,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Custo__2A4B4B5E">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK__Transacti__Custo__398D8EEE">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -123,8 +133,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Trans__2D27B809">
-          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="1" />
+        <Association Name="FK__Transacti__Trans__37A5467C">
+          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TransactionHeader">
@@ -142,27 +154,27 @@
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionHeader" EntityType="Self.TransactionHeader" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Album__ArtistID__276EDEB3" Association="Self.FK__Album__ArtistID__276EDEB3">
+          <AssociationSet Name="FK__Album__ArtistID__34C8D9D1" Association="Self.FK__Album__ArtistID__34C8D9D1">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Album" EntitySet="Album" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cart__AlbumID__31EC6D26" Association="Self.FK__Cart__AlbumID__31EC6D26">
+          <AssociationSet Name="FK__Cart__AlbumID__36B12243" Association="Self.FK__Cart__AlbumID__36B12243">
             <End Role="Album" EntitySet="Album" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cart__CustomerID__30F848ED" Association="Self.FK__Cart__CustomerID__30F848ED">
+          <AssociationSet Name="FK__Cart__CustomerID__35BCFE0A" Association="Self.FK__Cart__CustomerID__35BCFE0A">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Album__2E1BDC42" Association="Self.FK__Transacti__Album__2E1BDC42">
+          <AssociationSet Name="FK__Transacti__Album__38996AB5" Association="Self.FK__Transacti__Album__38996AB5">
             <End Role="Album" EntitySet="Album" />
             <End Role="TransactionDetail" EntitySet="TransactionDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Custo__2A4B4B5E" Association="Self.FK__Transacti__Custo__2A4B4B5E">
+          <AssociationSet Name="FK__Transacti__Custo__398D8EEE" Association="Self.FK__Transacti__Custo__398D8EEE">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="TransactionHeader" EntitySet="TransactionHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Trans__2D27B809" Association="Self.FK__Transacti__Trans__2D27B809">
+          <AssociationSet Name="FK__Transacti__Trans__37A5467C" Association="Self.FK__Transacti__Trans__37A5467C">
             <End Role="TransactionHeader" EntitySet="TransactionHeader" />
             <End Role="TransactionDetail" EntitySet="TransactionDetail" />
           </AssociationSet>

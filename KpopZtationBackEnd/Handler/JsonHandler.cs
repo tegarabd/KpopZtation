@@ -10,7 +10,11 @@ namespace KpopZtationBackEnd.Handler
     {
         public string Encode(object data)
         {
-            return JsonConvert.SerializeObject(data);
+            return JsonConvert.SerializeObject(data, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
         }
 
         public T Decode<T>(string data)

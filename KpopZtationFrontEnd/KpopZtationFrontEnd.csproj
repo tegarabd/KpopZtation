@@ -119,6 +119,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="View\AlbumPage\Delete.aspx" />
+    <Content Include="View\AlbumPage\Detail.aspx" />
+    <Content Include="View\AlbumPage\Insert.aspx" />
+    <Content Include="View\AlbumPage\Update.aspx" />
     <Content Include="View\ArtistPage\Delete.aspx" />
     <Content Include="View\ArtistPage\Detail.aspx" />
     <Content Include="View\ArtistPage\Insert.aspx" />
@@ -139,6 +143,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AlbumController.cs" />
     <Compile Include="Controller\ArtistController.cs" />
     <Compile Include="Controller\AuthenticationController.cs" />
     <Compile Include="Model\Album.cs">
@@ -183,6 +188,34 @@
     </Compile>
     <Compile Include="Service\JsonService.cs" />
     <Compile Include="Service\WebServiceInstance.cs" />
+    <Compile Include="View\AlbumPage\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AlbumPage\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlbumPage\Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AlbumPage\Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlbumPage\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AlbumPage\Insert.aspx.designer.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlbumPage\Update.aspx.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AlbumPage\Update.aspx.designer.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\ArtistPage\Delete.aspx.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

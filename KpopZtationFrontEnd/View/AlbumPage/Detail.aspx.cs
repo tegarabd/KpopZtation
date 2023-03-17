@@ -7,17 +7,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace KpopZtationFrontEnd.View.ArtistPage
+namespace KpopZtationFrontEnd.View.AlbumPage
 {
     public partial class Detail : System.Web.UI.Page
     {
-        private readonly ArtistController artistController = ArtistController.GetInstance(); 
+        private AlbumController albumController = AlbumController.GetInstance();
         public AuthenticationController authenticationController = AuthenticationController.GetInstance();
-        public Artist artist;
+        public Album album;
         protected void Page_Load(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(Request.QueryString.Get("id"));
-            artist = artistController.GetArtistById(id);
+            album = albumController.GetAlbumById(id);
         }
     }
 }

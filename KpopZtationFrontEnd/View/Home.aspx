@@ -6,7 +6,7 @@
     <h3>Artists</h3>
     <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
         { %>
-    <a href="ArtistPage/Insert.aspx">Insert</a>
+    <a href="ArtistPage/Insert.aspx">Insert Artist</a>
     <% } %>
     <div class="grid">
         <% foreach (var artist in artists)

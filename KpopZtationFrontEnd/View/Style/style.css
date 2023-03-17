@@ -19,6 +19,12 @@
     margin-right: auto;
 }
 
+input, textarea {
+    font: inherit;
+    border: none;
+    border-bottom: 0.125rem solid lightseagreen;
+}
+
 input[type="submit"], a {
     border: none;
     background-color: lightseagreen;
@@ -44,7 +50,7 @@ input[type="submit"], a {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    min-height: 20rem;
+    flex-direction: column;
 }
 
 .card {
@@ -54,7 +60,18 @@ input[type="submit"], a {
     transition: 200ms;
     align-items: center;
     border-radius: 0.5rem;
+    gap: 0.5rem;
 }
+
+    .card h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        margin: 0;
+    }
 
     .card:hover {
         background-color: whitesmoke;
