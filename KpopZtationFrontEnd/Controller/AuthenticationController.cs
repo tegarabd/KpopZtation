@@ -36,6 +36,24 @@ namespace KpopZtationFrontEnd.Controller
             return instance;
         }
 
+        public Customer LoginByCookie(MasterPage page)
+        {
+            if (page.Request.Cookies[COOKIE_KEY] != null)
+            {
+                int id = Int32.Parse(page.Request.Cookies[COOKIE_KEY].Value);
+                WebServiceResponse<Customer> response = jsonService
+                    .Decode<WebServiceResponse<Customer>>(webService.GetCustomerById(id));
+
+                if (response.Ok)
+                {
+                    page.Session[SESSION_KEY] = response.Content;
+                    return response.Content;
+                }
+
+            }
+            return null;
+        }
+
         public void RedirectAuthenticatedPage(Page page)
         {
             if (page.Session[SESSION_KEY] == null && page.Request.Cookies[COOKIE_KEY] == null)
@@ -70,8 +88,12 @@ namespace KpopZtationFrontEnd.Controller
 
         public void Logout(MasterPage page)
         {
-            page.Session.Clear();
-            page.Response.Cookies.Clear();
+            page.Session.Remove(SESSION_KEY);
+            string[] keys = page.Request.Cookies.AllKeys;
+            foreach (string key in keys)
+            {
+                page.Response.Cookies.Get(key).Expires = DateTime.Now.AddHours(-COOKIE_EXPIRE_IN_HOUR);
+            }
             page.Response.Redirect("~/View/Login.aspx");
         }
 

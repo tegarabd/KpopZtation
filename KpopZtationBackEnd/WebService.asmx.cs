@@ -95,5 +95,16 @@ namespace KpopZtationBackEnd
             return ProcessRequest<Artist>(new Func<string, string, Artist>(artistHandler.InsertArtist), name, image);
         }
 
+        [WebMethod]
+        public string UpdateArtist(int id, string name, string image)
+        {
+            return ProcessRequest<Artist>(new Func<int, string, string, Artist>(artistHandler.UpdateArtist), id, name, image);
+        }
+
+        [WebMethod]
+        public string DeleteArtist(int id)
+        {
+            return ProcessRequest<Artist>(new Func<int, Artist>(artistHandler.DeleteArtist), id);
+        }
     }
 }

@@ -60,6 +60,49 @@ namespace KpopZtationFrontEnd.Controller
 
         public void InsertArtist(Page page, string name, FileUpload imageFile)
         {
+            ValidateUpdateInput(name, imageFile);
+
+            WebServiceResponse<Artist> response = jsonService
+                .Decode<WebServiceResponse<Artist>>(webService.InsertArtist(name, imageFile.FileName));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            imageFile.SaveAs(page.Server.MapPath("~/Assets/Artists/" + imageFile.FileName));
+        }
+
+        public void UpdateArtist(Page page, int id, string name, FileUpload imageFile)
+        {
+            ValidateUpdateInput(name, imageFile);
+
+            WebServiceResponse<Artist> response = jsonService
+                .Decode<WebServiceResponse<Artist>>(webService.UpdateArtist(id, name, imageFile.FileName));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            imageFile.SaveAs(page.Server.MapPath("~/Assets/Artists/" + imageFile.FileName));
+        }
+
+        public void DeleteArtist(Page page, int id)
+        {
+            WebServiceResponse<Artist> response = jsonService
+                .Decode<WebServiceResponse<Artist>>(webService.DeleteArtist(id));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            page.Response.Redirect("~/View/Home.aspx");
+        }
+
+        private void ValidateUpdateInput(string name, FileUpload imageFile)
+        {
             if (name.Equals(""))
             {
                 throw new Exception("Artist Name must be filled");
@@ -82,16 +125,6 @@ namespace KpopZtationFrontEnd.Controller
             {
                 throw new Exception("Artist Image file size must be lower than 2MB");
             }
-
-            WebServiceResponse<Artist> response = jsonService
-                .Decode<WebServiceResponse<Artist>>(webService.InsertArtist(name, imageFile.FileName));
-
-            if (!response.Ok)
-            {
-                throw new Exception(response.Message);
-            }
-
-            imageFile.SaveAs(page.Server.MapPath("~/Assets/Artists/" + imageFile.FileName));
         }
     }
 }

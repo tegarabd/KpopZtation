@@ -39,6 +39,14 @@ input[type="submit"], a {
     gap: 2rem;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    min-height: 20rem;
+}
+
 .card {
     display: flex;
     flex-direction: column;

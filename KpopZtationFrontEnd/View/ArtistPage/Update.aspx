@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/NavBar.Master" AutoEventWireup="true" CodeBehind="Insert.aspx.cs" Inherits="KpopZtationFrontEnd.View.ArtistPage.Insert" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/NavBar.Master" AutoEventWireup="true" CodeBehind="Update.aspx.cs" Inherits="KpopZtationFrontEnd.View.ArtistPage.Update" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <h3>Insert Artist</h3>
+    <h3>Update Artist</h3>
     <div class="center">
         <asp:Table ID="Table" runat="server">
             <asp:TableRow>
@@ -20,6 +20,13 @@
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:FileUpload ID="FileUploadArtistImage" runat="server" />
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell ColumnSpan="2">
+                    <div class="card">
+                        <asp:Image ID="ImageArtist" runat="server" />
+                    </div>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>

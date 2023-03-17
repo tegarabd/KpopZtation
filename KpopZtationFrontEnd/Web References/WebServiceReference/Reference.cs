@@ -41,6 +41,10 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         private System.Threading.SendOrPostCallback InsertArtistOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateArtistOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteArtistOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -96,6 +100,12 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         /// <remarks/>
         public event InsertArtistCompletedEventHandler InsertArtistCompleted;
+        
+        /// <remarks/>
+        public event UpdateArtistCompletedEventHandler UpdateArtistCompleted;
+        
+        /// <remarks/>
+        public event DeleteArtistCompletedEventHandler DeleteArtistCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -282,6 +292,68 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateArtist", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string UpdateArtist(int id, string name, string image) {
+            object[] results = this.Invoke("UpdateArtist", new object[] {
+                        id,
+                        name,
+                        image});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateArtistAsync(int id, string name, string image) {
+            this.UpdateArtistAsync(id, name, image, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateArtistAsync(int id, string name, string image, object userState) {
+            if ((this.UpdateArtistOperationCompleted == null)) {
+                this.UpdateArtistOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateArtistOperationCompleted);
+            }
+            this.InvokeAsync("UpdateArtist", new object[] {
+                        id,
+                        name,
+                        image}, this.UpdateArtistOperationCompleted, userState);
+        }
+        
+        private void OnUpdateArtistOperationCompleted(object arg) {
+            if ((this.UpdateArtistCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateArtistCompleted(this, new UpdateArtistCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteArtist", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string DeleteArtist(int id) {
+            object[] results = this.Invoke("DeleteArtist", new object[] {
+                        id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteArtistAsync(int id) {
+            this.DeleteArtistAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteArtistAsync(int id, object userState) {
+            if ((this.DeleteArtistOperationCompleted == null)) {
+                this.DeleteArtistOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteArtistOperationCompleted);
+            }
+            this.InvokeAsync("DeleteArtist", new object[] {
+                        id}, this.DeleteArtistOperationCompleted, userState);
+        }
+        
+        private void OnDeleteArtistOperationCompleted(object arg) {
+            if ((this.DeleteArtistCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteArtistCompleted(this, new DeleteArtistCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -443,6 +515,58 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         private object[] results;
         
         internal InsertArtistCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UpdateArtistCompletedEventHandler(object sender, UpdateArtistCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateArtistCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateArtistCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void DeleteArtistCompletedEventHandler(object sender, DeleteArtistCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteArtistCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteArtistCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

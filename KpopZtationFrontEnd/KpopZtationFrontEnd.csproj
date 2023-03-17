@@ -119,8 +119,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="View\ArtistPage\Delete.aspx" />
     <Content Include="View\ArtistPage\Detail.aspx" />
     <Content Include="View\ArtistPage\Insert.aspx" />
+    <Content Include="View\ArtistPage\Update.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Register.aspx" />
@@ -181,6 +183,13 @@
     </Compile>
     <Compile Include="Service\JsonService.cs" />
     <Compile Include="Service\WebServiceInstance.cs" />
+    <Compile Include="View\ArtistPage\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ArtistPage\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\ArtistPage\Detail.aspx.cs">
       <DependentUpon>Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,6 +203,13 @@
     </Compile>
     <Compile Include="View\ArtistPage\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ArtistPage\Update.aspx.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ArtistPage\Update.aspx.designer.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

@@ -34,5 +34,36 @@ namespace KpopZtationBackEnd.Handler
             artistRepository.InsertArtist(artist);
             return artist;
         }
+
+        public Artist UpdateArtist(int id, string name, string image)
+        {
+            Artist artistRegisteredName = artistRepository.GetArtistByName(name);
+            if (artistRegisteredName != null)
+            {
+                throw new Exception("Name already used");
+            }
+
+            Artist artist = new Artist() { 
+                ArtistID = id,
+                ArtistName = name,
+                ArtistImage = image
+            };
+
+            artistRepository.UpdateArtist(artist);
+
+            return artist;
+        }
+
+        public Artist DeleteArtist(int id)
+        {
+            Artist artist = artistRepository.GetArtistById(id);
+            if (artist == null)
+            {
+                throw new Exception("Artist not found");
+            }
+
+            artistRepository.DeleteArtist(artist);
+            return artist;
+        }
     }
 }

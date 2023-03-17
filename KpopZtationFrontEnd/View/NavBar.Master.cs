@@ -11,37 +11,39 @@ namespace KpopZtationFrontEnd.View
 {
     public partial class NavBar : System.Web.UI.MasterPage
     {
-        private AuthenticationController authenticationController = AuthenticationController.GetInstance();
+        private readonly AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Customer customer = authenticationController.GetCurrentCustomer(this);
+            Customer customer = authenticationController.LoginByCookie(this);
             ChangeNavVisibilityByRole(customer);
         }
 
         private void ChangeNavVisibilityByRole(Customer customer)
         {
-            if (customer == null)
+            if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Guest"))
             {
                 NavLogin.Visible = true;
                 NavRegister.Visible = true;
             }
-            else
+
+            else if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Admin") ||
+                authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Customer"))
             {
-                LabelUsername.Text = customer.CustomerName;
+                LabelUsername.Text = customer?.CustomerName;
                 NavTransaction.Visible = true;
                 NavProfile.Visible = true;
                 NavLogout.Visible = true;
+            }
 
-                if (customer.CustomerRole == "Customer")
-                {
-                    NavCart.Visible = true;
-                }
+            else if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Customer"))
+            {
+                NavCart.Visible = true;
             }
         }
 
         protected void Nav_Click(object sender, EventArgs e)
         {
-            Button button = (Button) sender;
+            Button button = (Button)sender;
             string page = button.ID.Replace("Nav", "~/View/") + ".aspx";
             Response.Redirect(page);
         }
