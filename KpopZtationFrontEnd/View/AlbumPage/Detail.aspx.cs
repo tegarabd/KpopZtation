@@ -19,5 +19,10 @@ namespace KpopZtationFrontEnd.View.AlbumPage
             int id = Convert.ToInt32(Request.QueryString.Get("id"));
             album = albumController.GetAlbumById(id);
         }
+
+        protected void ButtonAddToCart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

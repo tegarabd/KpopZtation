@@ -119,5 +119,17 @@ namespace KpopZtationBackEnd
         {
             return ProcessRequest<Album>(new Func<int, Album>(albumHandler.GetAlbumById), id);
         }
+
+        [WebMethod]
+        public string UpdateAlbum(int id, string name, string image, string description, int price, int stock)
+        {
+            return ProcessRequest<Album>(new Func<int, string, string, string, int, int, Album>(albumHandler.UpdateAlbum), id, name, image, description, price, stock);
+        }
+
+        [WebMethod]
+        public string DeleteAlbum(int id)
+        {
+            return ProcessRequest<Album>(new Func<int, Album>(albumHandler.DeleteAlbum), id);
+        }
     }
 }

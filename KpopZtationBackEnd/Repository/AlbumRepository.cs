@@ -49,7 +49,6 @@ namespace KpopZtationBackEnd.Repository
             toBeUpdatedAlbum.AlbumName = album.AlbumName;
             toBeUpdatedAlbum.AlbumPrice = album.AlbumPrice;
             toBeUpdatedAlbum.AlbumStock = album.AlbumStock;
-            toBeUpdatedAlbum.ArtistID = album.ArtistID;
             Db.SaveChanges();
         }
 

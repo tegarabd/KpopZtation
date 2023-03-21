@@ -14,7 +14,7 @@
         <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Customer"))
             { %>
         <asp:TextBox ID="TextBoxQuantity" runat="server" TextMode="Number"></asp:TextBox>
-        <asp:Button ID="ButtonAddToCart" runat="server" Text="Add To Cart" />
+        <asp:Button ID="ButtonAddToCart" runat="server" Text="Add To Cart" OnClick="ButtonAddToCart_Click" />
         <% } %>
     </div>
     

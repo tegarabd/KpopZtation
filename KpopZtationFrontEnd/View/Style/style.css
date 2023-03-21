@@ -23,7 +23,12 @@ input, textarea {
     font: inherit;
     border: none;
     border-bottom: 0.125rem solid lightseagreen;
+    resize: none;
 }
+
+    input:not(input[type="submit"], input[type="checkbox"]), textarea {
+        min-width: 20rem;
+    }
 
 input[type="submit"], a {
     border: none;

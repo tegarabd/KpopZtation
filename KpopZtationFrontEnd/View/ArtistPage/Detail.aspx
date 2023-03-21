@@ -28,7 +28,7 @@
                 <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
                     { %>
                 <a href="../AlbumPage/Update.aspx?id=<%= album.AlbumID %>">Update</a>
-                <a href="../AlbumPage/Delete.aspx?id=<%= album.AlbumID %>">Delete</a>
+                <a href="../AlbumPage/Delete.aspx?id=<%= album.AlbumID %>&artistId=<%= artist.ArtistID %>">Delete</a>
                 <% } %>
             </div>
         </div>

@@ -47,6 +47,51 @@ namespace KpopZtationFrontEnd.Controller
 
         public void InsertAlbum(Page page, int artistId, string name, FileUpload imageFile, string description, string price, string stock)
         {
+            int priceAsInt, stockAsInt;
+            ValidateInput(name, imageFile, description, price, stock, out priceAsInt, out stockAsInt);
+
+            WebServiceResponse<Album> response = jsonService
+                .Decode<WebServiceResponse<Album>>(webService.InsertAlbum(artistId, name, imageFile.FileName, description, priceAsInt, stockAsInt));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            imageFile.SaveAs(page.Server.MapPath("~/Assets/Albums/" + imageFile.FileName));
+        }
+
+        public void UpdateAlbum(Page page, int id, string name, FileUpload imageFile, string description, string price, string stock)
+        {
+            int priceAsInt, stockAsInt;
+            ValidateInput(name, imageFile, description, price, stock, out priceAsInt, out stockAsInt);
+
+            WebServiceResponse<Album> response = jsonService
+                .Decode<WebServiceResponse<Album>>(webService.UpdateAlbum(id, name, imageFile.FileName, description, priceAsInt, stockAsInt));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            imageFile.SaveAs(page.Server.MapPath("~/Assets/Albums/" + imageFile.FileName));
+        }
+
+        public void DeleteAlbum(Page page, int artistId, int id)
+        {
+            WebServiceResponse<Artist> response = jsonService
+                .Decode<WebServiceResponse<Artist>>(webService.DeleteAlbum(id));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            page.Response.Redirect("~/View/ArtistPage/Detail.aspx?id=" + artistId);
+        }
+
+        private void ValidateInput(string name, FileUpload imageFile, string description, string price, string stock, out int priceAsInt, out int stockAsInt)
+        {
             if (name.Equals(""))
             {
                 throw new Exception("Album Name must be filled");
@@ -72,7 +117,7 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception("Album Price must be filled");
             }
 
-            int priceAsInt = Convert.ToInt32(price);
+            priceAsInt = Convert.ToInt32(price);
             if (priceAsInt < 100000 || priceAsInt > 1000000)
             {
                 throw new Exception("Album price must be between 100000 and 1000000");
@@ -83,7 +128,7 @@ namespace KpopZtationFrontEnd.Controller
                 throw new Exception("Album Stock must be filled");
             }
 
-            int stockAsInt = Convert.ToInt32(stock);
+            stockAsInt = Convert.ToInt32(stock);
             if (stockAsInt <= 0)
             {
                 throw new Exception("Album stock must be more than 0");
@@ -106,16 +151,6 @@ namespace KpopZtationFrontEnd.Controller
             {
                 throw new Exception("Artist Image file size must be lower than 2MB");
             }
-
-            WebServiceResponse<Album> response = jsonService
-                .Decode<WebServiceResponse<Album>>(webService.InsertAlbum(artistId, name, imageFile.FileName, description, priceAsInt, stockAsInt));
-
-            if (!response.Ok)
-            {
-                throw new Exception(response.Message);
-            }
-
-            imageFile.SaveAs(page.Server.MapPath("~/Assets/Albums/" + imageFile.FileName));
         }
     }
 }
