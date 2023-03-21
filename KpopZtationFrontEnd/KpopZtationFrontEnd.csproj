@@ -127,6 +127,7 @@
     <Content Include="View\ArtistPage\Detail.aspx" />
     <Content Include="View\ArtistPage\Insert.aspx" />
     <Content Include="View\ArtistPage\Update.aspx" />
+    <Content Include="View\Cart.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Register.aspx" />
@@ -146,6 +147,7 @@
     <Compile Include="Controller\AlbumController.cs" />
     <Compile Include="Controller\ArtistController.cs" />
     <Compile Include="Controller\AuthenticationController.cs" />
+    <Compile Include="Controller\CartController.cs" />
     <Compile Include="Model\Album.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -243,6 +245,13 @@
     </Compile>
     <Compile Include="View\ArtistPage\Update.aspx.designer.cs">
       <DependentUpon>Update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

@@ -26,7 +26,7 @@ namespace KpopZtationFrontEnd.View
                 NavRegister.Visible = true;
             }
 
-            else if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Admin") ||
+            if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Admin") ||
                 authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Customer"))
             {
                 LabelUsername.Text = customer?.CustomerName;
@@ -35,7 +35,7 @@ namespace KpopZtationFrontEnd.View
                 NavLogout.Visible = true;
             }
 
-            else if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Customer"))
+            if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Customer"))
             {
                 NavCart.Visible = true;
             }

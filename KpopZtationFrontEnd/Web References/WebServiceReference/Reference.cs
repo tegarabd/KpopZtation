@@ -53,6 +53,10 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         private System.Threading.SendOrPostCallback DeleteAlbumOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetCartsByCustomerIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertAlbumToCustomerCartOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -126,6 +130,12 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         /// <remarks/>
         public event DeleteAlbumCompletedEventHandler DeleteAlbumCompleted;
+        
+        /// <remarks/>
+        public event GetCartsByCustomerIdCompletedEventHandler GetCartsByCustomerIdCompleted;
+        
+        /// <remarks/>
+        public event InsertAlbumToCustomerCartCompletedEventHandler InsertAlbumToCustomerCartCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -510,6 +520,68 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCartsByCustomerId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetCartsByCustomerId(int customerId) {
+            object[] results = this.Invoke("GetCartsByCustomerId", new object[] {
+                        customerId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCartsByCustomerIdAsync(int customerId) {
+            this.GetCartsByCustomerIdAsync(customerId, null);
+        }
+        
+        /// <remarks/>
+        public void GetCartsByCustomerIdAsync(int customerId, object userState) {
+            if ((this.GetCartsByCustomerIdOperationCompleted == null)) {
+                this.GetCartsByCustomerIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCartsByCustomerIdOperationCompleted);
+            }
+            this.InvokeAsync("GetCartsByCustomerId", new object[] {
+                        customerId}, this.GetCartsByCustomerIdOperationCompleted, userState);
+        }
+        
+        private void OnGetCartsByCustomerIdOperationCompleted(object arg) {
+            if ((this.GetCartsByCustomerIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCartsByCustomerIdCompleted(this, new GetCartsByCustomerIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertAlbumToCustomerCart", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string InsertAlbumToCustomerCart(int customerdId, int albumId, int quantity) {
+            object[] results = this.Invoke("InsertAlbumToCustomerCart", new object[] {
+                        customerdId,
+                        albumId,
+                        quantity});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertAlbumToCustomerCartAsync(int customerdId, int albumId, int quantity) {
+            this.InsertAlbumToCustomerCartAsync(customerdId, albumId, quantity, null);
+        }
+        
+        /// <remarks/>
+        public void InsertAlbumToCustomerCartAsync(int customerdId, int albumId, int quantity, object userState) {
+            if ((this.InsertAlbumToCustomerCartOperationCompleted == null)) {
+                this.InsertAlbumToCustomerCartOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertAlbumToCustomerCartOperationCompleted);
+            }
+            this.InvokeAsync("InsertAlbumToCustomerCart", new object[] {
+                        customerdId,
+                        albumId,
+                        quantity}, this.InsertAlbumToCustomerCartOperationCompleted, userState);
+        }
+        
+        private void OnInsertAlbumToCustomerCartOperationCompleted(object arg) {
+            if ((this.InsertAlbumToCustomerCartCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertAlbumToCustomerCartCompleted(this, new InsertAlbumToCustomerCartCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -827,6 +899,58 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         private object[] results;
         
         internal DeleteAlbumCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetCartsByCustomerIdCompletedEventHandler(object sender, GetCartsByCustomerIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCartsByCustomerIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCartsByCustomerIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void InsertAlbumToCustomerCartCompletedEventHandler(object sender, InsertAlbumToCustomerCartCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertAlbumToCustomerCartCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertAlbumToCustomerCartCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Factory\AlbumFactory.cs" />
     <Compile Include="Handler\AlbumHandler.cs" />
+    <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Handler\JsonHandler.cs" />
     <Compile Include="Model\Album.cs">

@@ -15,7 +15,11 @@ namespace KpopZtationFrontEnd.View.ArtistPage
         private readonly AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-            authenticationController.RedirectAuthenticatedPage(this);
+            if (!authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
+            {
+                Response.Redirect("~/View/Home.aspx");
+                return;
+            }
         }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
@@ -29,6 +33,7 @@ namespace KpopZtationFrontEnd.View.ArtistPage
             }
             catch (Exception ex)
             {
+                LabelResult.ForeColor = Color.Red;
                 LabelResult.Text = ex.Message;
                 return;
             }

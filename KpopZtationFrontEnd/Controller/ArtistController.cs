@@ -60,7 +60,7 @@ namespace KpopZtationFrontEnd.Controller
 
         public void InsertArtist(Page page, string name, FileUpload imageFile)
         {
-            ValidateUpdateInput(name, imageFile);
+            ValidateInput(name, imageFile);
 
             WebServiceResponse<Artist> response = jsonService
                 .Decode<WebServiceResponse<Artist>>(webService.InsertArtist(name, imageFile.FileName));
@@ -75,7 +75,7 @@ namespace KpopZtationFrontEnd.Controller
 
         public void UpdateArtist(Page page, int id, string name, FileUpload imageFile)
         {
-            ValidateUpdateInput(name, imageFile);
+            ValidateInput(name, imageFile);
 
             WebServiceResponse<Artist> response = jsonService
                 .Decode<WebServiceResponse<Artist>>(webService.UpdateArtist(id, name, imageFile.FileName));
@@ -101,7 +101,7 @@ namespace KpopZtationFrontEnd.Controller
             page.Response.Redirect("~/View/Home.aspx");
         }
 
-        private void ValidateUpdateInput(string name, FileUpload imageFile)
+        private void ValidateInput(string name, FileUpload imageFile)
         {
             if (name.Equals(""))
             {

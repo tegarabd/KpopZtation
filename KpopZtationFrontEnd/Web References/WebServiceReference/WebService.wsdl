@@ -184,6 +184,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetCartsByCustomerId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCartsByCustomerIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCartsByCustomerIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAlbumToCustomerCart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerdId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="albumId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAlbumToCustomerCartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertAlbumToCustomerCartResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LoginSoapIn">
@@ -258,6 +288,18 @@
   <wsdl:message name="DeleteAlbumSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteAlbumResponse" />
   </wsdl:message>
+  <wsdl:message name="GetCartsByCustomerIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCartsByCustomerId" />
+  </wsdl:message>
+  <wsdl:message name="GetCartsByCustomerIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCartsByCustomerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAlbumToCustomerCartSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAlbumToCustomerCart" />
+  </wsdl:message>
+  <wsdl:message name="InsertAlbumToCustomerCartSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAlbumToCustomerCartResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -306,6 +348,14 @@
     <wsdl:operation name="DeleteAlbum">
       <wsdl:input message="tns:DeleteAlbumSoapIn" />
       <wsdl:output message="tns:DeleteAlbumSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCartsByCustomerId">
+      <wsdl:input message="tns:GetCartsByCustomerIdSoapIn" />
+      <wsdl:output message="tns:GetCartsByCustomerIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlbumToCustomerCart">
+      <wsdl:input message="tns:InsertAlbumToCustomerCartSoapIn" />
+      <wsdl:output message="tns:InsertAlbumToCustomerCartSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -418,6 +468,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCartsByCustomerId">
+      <soap:operation soapAction="http://tempuri.org/GetCartsByCustomerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlbumToCustomerCart">
+      <soap:operation soapAction="http://tempuri.org/InsertAlbumToCustomerCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -522,6 +590,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteAlbum">
       <soap12:operation soapAction="http://tempuri.org/DeleteAlbum" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCartsByCustomerId">
+      <soap12:operation soapAction="http://tempuri.org/GetCartsByCustomerId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlbumToCustomerCart">
+      <soap12:operation soapAction="http://tempuri.org/InsertAlbumToCustomerCart" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

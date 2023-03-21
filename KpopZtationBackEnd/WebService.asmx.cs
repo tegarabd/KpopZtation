@@ -25,6 +25,7 @@ namespace KpopZtationBackEnd
         private readonly CustomerHandler customerHandler = new CustomerHandler();
         private readonly ArtistHandler artistHandler = new ArtistHandler();
         private readonly AlbumHandler albumHandler = new AlbumHandler();
+        private readonly CartHandler cartHandler = new CartHandler();
 
         private const string SUCCESS_MESSAGE = "Success";
 
@@ -130,6 +131,18 @@ namespace KpopZtationBackEnd
         public string DeleteAlbum(int id)
         {
             return ProcessRequest<Album>(new Func<int, Album>(albumHandler.DeleteAlbum), id);
+        }
+
+        [WebMethod]
+        public string GetCartsByCustomerId(int customerId)
+        {
+            return ProcessRequest<List<Cart>>(new Func<int, List<Cart>>(cartHandler.GetCartsByCustomerId), customerId);
+        }
+
+        [WebMethod]
+        public string InsertAlbumToCustomerCart(int customerdId, int albumId, int quantity)
+        {
+            return ProcessRequest<Cart>(new Func<int, int, int, Cart>(cartHandler.InsertAlbumToCustomerCart), customerdId, albumId, quantity);
         }
     }
 }

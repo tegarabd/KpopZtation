@@ -13,8 +13,15 @@ namespace KpopZtationFrontEnd.View.ArtistPage
     public partial class Update : System.Web.UI.Page
     {
         private readonly ArtistController artistController = ArtistController.GetInstance();
+        private readonly AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
+            {
+                Response.Redirect("~/View/Home.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 int id = Convert.ToInt32(Request.QueryString.Get("id"));
@@ -37,6 +44,7 @@ namespace KpopZtationFrontEnd.View.ArtistPage
             }
             catch (Exception ex)
             {
+                LabelResult.ForeColor = Color.Red;
                 LabelResult.Text = ex.Message;
                 return;
             }

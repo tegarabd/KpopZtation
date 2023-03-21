@@ -24,6 +24,15 @@ namespace KpopZtationFrontEnd.View.AlbumPage
         protected global::System.Web.UI.WebControls.TextBox TextBoxQuantity;
 
         /// <summary>
+        /// LabelResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelResult;
+
+        /// <summary>
         /// ButtonAddToCart control.
         /// </summary>
         /// <remarks>

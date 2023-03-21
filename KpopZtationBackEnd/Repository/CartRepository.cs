@@ -26,9 +26,27 @@ namespace KpopZtationBackEnd.Repository
             return instance;
         }
 
-        public List<Cart> GetCartsByCustomerId(int id)
+        public List<Cart> GetCartsByCustomerId(int customerId)
         {
-            return Db.Carts.Where(cart => cart.CustomerID == id).ToList();
+            return Db.Carts.Where(cart => cart.CustomerID == customerId).ToList();
+        }
+
+        public void InsertCart(Cart cart)
+        {
+            Db.Carts.Add(cart);
+            Db.SaveChanges();
+        }
+
+        public void UpdateCart(Cart cart)
+        {
+            Cart updatedCart = GetCart(cart.CustomerID, cart.AlbumID);
+            updatedCart.Qty = cart.Qty;
+            Db.SaveChanges();
+        }
+
+        public Cart GetCart(int customerId, int albumId)
+        {
+            return Db.Carts.Where(cart => cart.CustomerID == customerId && cart.AlbumID == albumId).FirstOrDefault();
         }
     }
 }
