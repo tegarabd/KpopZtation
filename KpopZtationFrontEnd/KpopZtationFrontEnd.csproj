@@ -127,7 +127,8 @@
     <Content Include="View\ArtistPage\Detail.aspx" />
     <Content Include="View\ArtistPage\Insert.aspx" />
     <Content Include="View\ArtistPage\Update.aspx" />
-    <Content Include="View\Cart.aspx" />
+    <Content Include="View\Carts.aspx" />
+    <Content Include="View\CartPage\Delete.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Register.aspx" />
@@ -141,6 +142,7 @@
     </None>
     <None Include="Web References\WebServiceReference\WebService.disco" />
     <Content Include="View\Style\style.css" />
+    <Content Include="View\Transaction.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +150,7 @@
     <Compile Include="Controller\ArtistController.cs" />
     <Compile Include="Controller\AuthenticationController.cs" />
     <Compile Include="Controller\CartController.cs" />
+    <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Model\Album.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -246,12 +249,19 @@
     <Compile Include="View\ArtistPage\Update.aspx.designer.cs">
       <DependentUpon>Update.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Cart.aspx.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="View\Carts.aspx.cs">
+      <DependentUpon>Carts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Cart.aspx.designer.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="View\Carts.aspx.designer.cs">
+      <DependentUpon>Carts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\CartPage\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\CartPage\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -280,6 +290,13 @@
     </Compile>
     <Compile Include="View\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transaction.aspx.cs">
+      <DependentUpon>Transaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Transaction.aspx.designer.cs">
+      <DependentUpon>Transaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\WebServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>

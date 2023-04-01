@@ -48,5 +48,17 @@ namespace KpopZtationBackEnd.Repository
         {
             return Db.Carts.Where(cart => cart.CustomerID == customerId && cart.AlbumID == albumId).FirstOrDefault();
         }
+
+        public void DeleteCart(Cart cart)
+        {
+            Db.Carts.Remove(cart);
+            Db.SaveChanges();
+        }
+
+        public void DeleteCarts(List<Cart> carts)
+        {
+            Db.Carts.RemoveRange(carts);
+            Db.SaveChanges();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace KpopZtationFrontEnd.Controller
 {
@@ -57,6 +58,19 @@ namespace KpopZtationFrontEnd.Controller
             }
 
             return response.Content;
+        }
+
+        public void DeleteCart(Page page, int customerId, int albumId)
+        {
+            WebServiceResponse<Cart> response = jsonService
+                .Decode<WebServiceResponse<Cart>>(webService.DeleteCart(customerId, albumId));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            page.Response.Redirect("~/View/Carts.aspx");
         }
 
     }

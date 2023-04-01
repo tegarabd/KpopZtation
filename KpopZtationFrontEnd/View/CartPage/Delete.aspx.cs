@@ -6,14 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace KpopZtationFrontEnd.View
+namespace KpopZtationFrontEnd.View.CartPage
 {
-    public partial class Cart : System.Web.UI.Page
+    public partial class Delete : System.Web.UI.Page
     {
-        private CartController cartController = CartController.GetInstance();
-        private AuthenticationController authenticationController = AuthenticationController.GetInstance();
-
-        public List<Model.Cart> carts;
+        private readonly CartController cartController = CartController.GetInstance();
+        private readonly AuthenticationController authenticationController = AuthenticationController.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Customer"))
@@ -22,10 +20,9 @@ namespace KpopZtationFrontEnd.View
                 return;
             }
 
+            int albumId = Convert.ToInt32(Request.QueryString.Get("albumId"));
             int customerId = authenticationController.GetCurrentCustomer(Master).CustomerID;
-            carts = cartController.GetCartsByCustomerId(customerId);
+            cartController.DeleteCart(this, customerId, albumId);
         }
-
-
     }
 }

@@ -15,7 +15,7 @@
             <h1 class="logo" >KpopZtation</h1>
             <asp:Button ID="NavHome" runat="server" Text="Home" OnClick="Nav_Click"/>
 
-            <asp:Button ID="NavCart" runat="server" Text="Cart" OnClick="Nav_Click" Visible="false"/>
+            <asp:Button ID="NavCarts" runat="server" Text="Cart" OnClick="Nav_Click" Visible="false"/>
             <asp:Button ID="NavTransaction" runat="server" Text="Transaction" OnClick="Nav_Click" Visible="false"/>
             <asp:Button ID="NavProfile" runat="server" Text="Profile" OnClick="Nav_Click" Visible="false"/>
 

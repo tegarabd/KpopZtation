@@ -37,7 +37,7 @@ namespace KpopZtationFrontEnd.View
 
             if (authenticationController.IsCurrentCustomerAuthorizedByRole(this, "Customer"))
             {
-                NavCart.Visible = true;
+                NavCarts.Visible = true;
             }
         }
 

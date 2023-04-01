@@ -1,4 +1,5 @@
-﻿using KpopZtationBackEnd.Model;
+﻿using KpopZtationBackEnd.Factory;
+using KpopZtationBackEnd.Model;
 using KpopZtationBackEnd.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace KpopZtationBackEnd.Handler
     public class CartHandler
     {
         private readonly CartRepository cartRepository = CartRepository.GetInstance();
+        private readonly CartFactory cartFactory = CartFactory.GetInstance();
         private readonly AlbumRepository albumRepository = AlbumRepository.GetInstance();
 
         public List<Cart> GetCartsByCustomerId(int customerId)
@@ -36,14 +38,16 @@ namespace KpopZtationBackEnd.Handler
                 return cart;
             }
 
-            cart = new Cart()
-            {
-                AlbumID = albumId,
-                CustomerID = customerId,
-                Qty = quantity,
-            };
+            cart = cartFactory.Create(customerId, albumId, quantity);
 
             cartRepository.InsertCart(cart);
+            return cart;
+        }
+
+        public Cart DeleteCart(int customerId, int albumId)
+        {
+            Cart cart = cartRepository.GetCart(customerId, albumId);
+            cartRepository.DeleteCart(cart);
             return cart;
         }
 

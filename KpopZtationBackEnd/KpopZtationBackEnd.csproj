@@ -97,10 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factory\AlbumFactory.cs" />
+    <Compile Include="Factory\CartFactory.cs" />
+    <Compile Include="Factory\TransactionFactory.cs" />
     <Compile Include="Handler\AlbumHandler.cs" />
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\CustomerHandler.cs" />
     <Compile Include="Handler\JsonHandler.cs" />
+    <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Model\Album.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

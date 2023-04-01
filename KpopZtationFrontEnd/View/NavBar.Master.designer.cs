@@ -42,13 +42,13 @@ namespace KpopZtationFrontEnd.View
         protected global::System.Web.UI.WebControls.Button NavHome;
 
         /// <summary>
-        /// NavCart control.
+        /// NavCarts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NavCart;
+        protected global::System.Web.UI.WebControls.Button NavCarts;
 
         /// <summary>
         /// NavTransaction control.

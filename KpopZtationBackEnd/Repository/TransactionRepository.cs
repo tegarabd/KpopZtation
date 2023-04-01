@@ -45,10 +45,11 @@ namespace KpopZtationBackEnd.Repository
             return Db.TransactionDetails.Where(transaction => transaction.TransactionID == id).ToList();
         }
 
-        public void InsertTransactionHeader(TransactionHeader transactionHeader)
+        public TransactionHeader InsertTransactionHeader(TransactionHeader transactionHeader)
         {
-            Db.TransactionHeaders.Add(transactionHeader);
+            TransactionHeader transaction = Db.TransactionHeaders.Add(transactionHeader);
             Db.SaveChanges();
+            return transaction;
         }
 
         public void InsertTransactionDetails(List<TransactionDetail> transactionDetails)
