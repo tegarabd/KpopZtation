@@ -42,5 +42,18 @@ namespace KpopZtationFrontEnd.Controller
 
             page.Response.Redirect("~/View/Home.aspx");
         }
+
+        public List<TransactionHeader> GetTransactionsByCustomerId(int customerId)
+        {
+            WebServiceResponse<List<TransactionHeader>> response = jsonService
+                .Decode<WebServiceResponse<List<TransactionHeader>>>(webService.GetTransactionsByCustomerId(customerId));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            return response.Content;
+        }
     }
 }

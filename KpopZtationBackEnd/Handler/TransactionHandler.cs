@@ -18,26 +18,44 @@ namespace KpopZtationBackEnd.Handler
         public TransactionHeader InsertTransaction(int customerId)
         {
             List<Cart> carts = cartRepository.GetCartsByCustomerId(customerId);
+            TransactionHeader transactionHeader = InsertTransactionHeader(customerId);
+            List<TransactionDetail> transactionDetails = GenerateTransactionDetails(carts, transactionHeader);
+            InsertTransactionDetails(ref transactionDetails);
+            DeleteUserCarts(ref carts);
+            UpdateAlbumStock(ref carts);
 
-            // Insert Transaction Header
-            TransactionHeader transactionHeader = transactionFactory.CreateHeader(customerId);
-            transactionHeader = transactionRepository.InsertTransactionHeader(transactionHeader);
+            return transactionHeader;
+        }
 
-            // Generate Transaction Details
-            List<TransactionDetail> transactionDetails = carts.Select(cart => transactionFactory.CreateDetail(transactionHeader.TransactionID, cart)).ToList();
+        private void InsertTransactionDetails(ref List<TransactionDetail> transactionDetails)
+        {
+            transactionRepository.InsertTransactionDetails(transactionDetails);
+        }
 
-            // Update Album Stock
+        private void DeleteUserCarts(ref List<Cart> carts)
+        {
+            cartRepository.DeleteCarts(carts);
+        }
+
+        private void UpdateAlbumStock(ref List<Cart> carts)
+        {
             carts.ForEach(cart =>
             {
-                Album album = cart.Album;
+                Album album = albumRepository.GetAlbumById(cart.AlbumID);
                 album.AlbumStock -= cart.Qty;
                 albumRepository.UpdateAlbum(album);
             });
+        }
 
-            // Insert Transaction Details and Delete Carts
-            transactionRepository.InsertTransactionDetails(transactionDetails);
-            cartRepository.DeleteCarts(carts);
+        private List<TransactionDetail> GenerateTransactionDetails(List<Cart> carts, TransactionHeader transactionHeader)
+        {
+            return carts.Select(cart => transactionFactory.CreateDetail(transactionHeader.TransactionID, cart)).ToList();
+        }
 
+        private TransactionHeader InsertTransactionHeader(int customerId)
+        {
+            TransactionHeader transactionHeader = transactionFactory.CreateHeader(customerId);
+            transactionHeader = transactionRepository.InsertTransactionHeader(transactionHeader);
             return transactionHeader;
         }
 
