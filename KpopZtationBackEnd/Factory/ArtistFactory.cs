@@ -30,6 +30,15 @@ namespace KpopZtationBackEnd.Factory
             };
 
         }
+        public Artist Create(int id, string name, string image)
+        {
+            return new Artist() { 
+                ArtistID = id,
+                ArtistName = name,
+                ArtistImage = image,
+            };
+
+        }
 
        
     }

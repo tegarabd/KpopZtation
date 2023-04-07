@@ -36,6 +36,20 @@ namespace KpopZtationBackEnd.Factory
                 CustomerRole = "Customer"
             };
         }
+        
+        public Customer Create(int id, string name, string email, string gender, string address, string password)
+        {
+            return new Customer()
+            {
+                CustomerID = id,
+                CustomerName = name,
+                CustomerEmail = email,
+                CustomerGender = gender,
+                CustomerAddress = address,
+                CustomerPassword = password,
+                CustomerRole = "Customer"
+            };
+        }
 
         
     }

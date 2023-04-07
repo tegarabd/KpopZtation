@@ -9,6 +9,9 @@
     gap: 1rem;
     align-items: center;
     padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    background-color: white;
 }
 
 .main {
@@ -26,7 +29,7 @@ input, textarea {
     resize: none;
 }
 
-    input:not(input[type="submit"], input[type="checkbox"]), textarea {
+    input:not(input[type="submit"], input[type="checkbox"], input[type="radio"]), textarea {
         min-width: 20rem;
     }
 

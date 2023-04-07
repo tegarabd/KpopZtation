@@ -131,6 +131,7 @@
     <Content Include="View\CartPage\Delete.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\Login.aspx" />
+    <Content Include="View\Profile.aspx" />
     <Content Include="View\Register.aspx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -150,6 +151,7 @@
     <Compile Include="Controller\ArtistController.cs" />
     <Compile Include="Controller\AuthenticationController.cs" />
     <Compile Include="Controller\CartController.cs" />
+    <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Model\Album.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -283,6 +285,13 @@
     </Compile>
     <Compile Include="View\NavBar.Master.designer.cs">
       <DependentUpon>NavBar.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

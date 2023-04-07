@@ -43,12 +43,7 @@ namespace KpopZtationBackEnd.Handler
                 throw new Exception("Name already used");
             }
 
-            Artist artist = new Artist() { 
-                ArtistID = id,
-                ArtistName = name,
-                ArtistImage = image
-            };
-
+            Artist artist = artistFactory.Create(id, name, image);
             artistRepository.UpdateArtist(artist);
 
             return artist;

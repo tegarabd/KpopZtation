@@ -38,6 +38,12 @@ namespace KpopZtationFrontEnd.Controller
             }
 
             int quantityAsInt = Convert.ToInt32(quantity);
+
+            if (quantityAsInt <= 0)
+            {
+                throw new Exception("Quantity must be greater than zero");
+            }
+
             WebServiceResponse<Cart> response = jsonService
                 .Decode<WebServiceResponse<Cart>>(webService.InsertAlbumToCustomerCart(customerId, albumId, quantityAsInt));
 

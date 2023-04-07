@@ -35,5 +35,18 @@ namespace KpopZtationBackEnd.Factory
                 AlbumStock = stock,
             };
         }
+        
+        public Album Create(string name, string image, string description, int price, int stock, int id)
+        {
+            return new Album()
+            {
+                AlbumID = id,
+                AlbumName = name,
+                AlbumImage = image,
+                AlbumDescription = description,
+                AlbumPrice = price,
+                AlbumStock = stock,
+            };
+        }
     }
 }

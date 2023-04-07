@@ -55,5 +55,18 @@ namespace KpopZtationFrontEnd.Controller
 
             return response.Content;
         }
+
+        public List<TransactionHeader> GetTransactions()
+        {
+            WebServiceResponse<List<TransactionHeader>> response = jsonService
+                .Decode<WebServiceResponse<List<TransactionHeader>>>(webService.GetTransactions());
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            return response.Content;
+        }
     }
 }

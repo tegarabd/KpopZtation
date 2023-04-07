@@ -65,6 +65,8 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         private System.Threading.SendOrPostCallback GetTransactionsByCustomerIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateCustomerOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -156,6 +158,9 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         /// <remarks/>
         public event GetTransactionsByCustomerIdCompletedEventHandler GetTransactionsByCustomerIdCompleted;
+        
+        /// <remarks/>
+        public event UpdateCustomerCompletedEventHandler UpdateCustomerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -718,6 +723,45 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCustomer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string UpdateCustomer(int id, string name, string email, string gender, string address, string password) {
+            object[] results = this.Invoke("UpdateCustomer", new object[] {
+                        id,
+                        name,
+                        email,
+                        gender,
+                        address,
+                        password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateCustomerAsync(int id, string name, string email, string gender, string address, string password) {
+            this.UpdateCustomerAsync(id, name, email, gender, address, password, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateCustomerAsync(int id, string name, string email, string gender, string address, string password, object userState) {
+            if ((this.UpdateCustomerOperationCompleted == null)) {
+                this.UpdateCustomerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCustomerOperationCompleted);
+            }
+            this.InvokeAsync("UpdateCustomer", new object[] {
+                        id,
+                        name,
+                        email,
+                        gender,
+                        address,
+                        password}, this.UpdateCustomerOperationCompleted, userState);
+        }
+        
+        private void OnUpdateCustomerOperationCompleted(object arg) {
+            if ((this.UpdateCustomerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateCustomerCompleted(this, new UpdateCustomerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1191,6 +1235,32 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         private object[] results;
         
         internal GetTransactionsByCustomerIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UpdateCustomerCompletedEventHandler(object sender, UpdateCustomerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateCustomerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

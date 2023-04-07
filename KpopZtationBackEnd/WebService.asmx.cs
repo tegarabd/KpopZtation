@@ -169,5 +169,11 @@ namespace KpopZtationBackEnd
         {
             return ProcessRequest<List<TransactionHeader>>(new Func<int, List<TransactionHeader>>(transactionHandler.GetTransactionsByCustomerId), customerId);
         }
+
+        [WebMethod]
+        public string UpdateCustomer(int id, string name, string email, string gender, string address, string password)
+        {
+            return ProcessRequest<Customer>(new Func<int, string, string, string, string, string, Customer>(customerHandler.UpdateCustomer), id, name, email, gender, address, password);
+        }
     }
 }

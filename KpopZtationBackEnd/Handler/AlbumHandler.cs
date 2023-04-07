@@ -22,15 +22,7 @@ namespace KpopZtationBackEnd.Handler
 
         public Album UpdateAlbum(int id, string name, string image, string description, int price, int stock)
         {
-            Album album = new Album()
-            {
-                AlbumID = id,
-                AlbumName = name,
-                AlbumImage = image,
-                AlbumDescription = description,
-                AlbumPrice = price,
-                AlbumStock = stock
-            };
+            Album album = albumFactory.Create(name, image, description, price, stock, id);
 
             albumRepository.UpdateAlbum(album);
             return album;
