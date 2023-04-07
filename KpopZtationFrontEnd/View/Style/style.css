@@ -24,9 +24,9 @@
 
 input, textarea {
     font: inherit;
-    border: none;
-    border-bottom: 0.125rem solid lightseagreen;
+    border: 0.125rem solid lightseagreen;
     resize: none;
+    border-radius: 0.25rem;
 }
 
     input:not(input[type="submit"], input[type="checkbox"], input[type="radio"]), textarea {

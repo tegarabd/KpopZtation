@@ -12,16 +12,12 @@ namespace KpopZtationFrontEnd.View
     public partial class Transaction : System.Web.UI.Page
     {
         private TransactionController transactionController = TransactionController.GetInstance();
-        private AuthenticationController authenticationController = AuthenticationController.GetInstance();
+        public AuthenticationController authenticationController = AuthenticationController.GetInstance();
 
         public List<TransactionHeader> transactionHeaders;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Guest"))
-            {
-                Response.Redirect("~/View/Home.aspx");
-                return;
-            }
+            authenticationController.RedirectAuthenticatedPage(this);
 
             if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
             {

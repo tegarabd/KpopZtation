@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <h3>Transaction</h3>
-
+    <% if (authenticationController.IsCurrentCustomerAuthorizedByRole(Master, "Admin"))
+        { %>
+    <a href="Reports.aspx">Report</a>
+    <% } %>
     <% foreach (var transactionHeader in transactionHeaders)
         { %>
 
