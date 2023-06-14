@@ -57,5 +57,16 @@ namespace KpopZtationBackEnd.Repository
             Db.TransactionDetails.AddRange(transactionDetails);
             Db.SaveChanges();
         }
+
+        public void DeleteTransactions(List<TransactionHeader> transactionHeaders)
+        {
+            transactionHeaders.ForEach(transactionHeader =>
+            {
+                Db.TransactionDetails.RemoveRange(transactionHeader.TransactionDetails.ToList());
+            });
+
+            Db.TransactionHeaders.RemoveRange(transactionHeaders);
+        }
+
     }
 }

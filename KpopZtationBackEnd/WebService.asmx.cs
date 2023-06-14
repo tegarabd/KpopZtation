@@ -175,5 +175,17 @@ namespace KpopZtationBackEnd
         {
             return ProcessRequest<Customer>(new Func<int, string, string, string, string, string, Customer>(customerHandler.UpdateCustomer), id, name, email, gender, address, password);
         }
+
+        [WebMethod]
+        public string GetCustomers()
+        {
+            return ProcessRequest<List<Customer>>(new Func<List<Customer>>(customerHandler.GetCustomers));
+        }
+
+        [WebMethod]
+        public string DeleteCustomer(int id)
+        {
+            return ProcessRequest<Customer>(new Func<int, Customer>(customerHandler.DeleteCustomer), id);
+        }
     }
 }

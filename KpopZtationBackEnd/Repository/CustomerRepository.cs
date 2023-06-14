@@ -25,6 +25,11 @@ namespace KpopZtationBackEnd.Repository
             return instance;
         }
 
+        public List<Customer> GetCustomers()
+        {
+            return Db.Customers.ToList();
+        }
+
         public Customer GetCustomerById(int id)
         {
             return Db.Customers.Where(customer => customer.CustomerID == id).FirstOrDefault();

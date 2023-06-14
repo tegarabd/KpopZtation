@@ -43,6 +43,19 @@ namespace KpopZtationFrontEnd.Controller
             return response.Content;
         }
 
+        internal List<Customer> GetCustomers()
+        {
+            WebServiceResponse<List<Customer>> response = jsonService
+                .Decode<WebServiceResponse<List<Customer>>>(webService.GetCustomers());
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+
+            return response.Content;
+        }
+
         public void UpdateCustomer(MasterPage page, int id, string name, string email, string gender, string address, string password)
         {
             if (name.Equals("") || email.Equals("") || gender.Equals("") || address.Equals("") || password.Equals(""))
@@ -81,5 +94,15 @@ namespace KpopZtationFrontEnd.Controller
             page.Response.Redirect("~/View/Home.aspx");
         }
 
+        public void DeleteCustomer(int id)
+        {
+            WebServiceResponse<Customer> response = jsonService
+                .Decode<WebServiceResponse<Customer>>(webService.DeleteCustomer(id));
+
+            if (!response.Ok)
+            {
+                throw new Exception(response.Message);
+            }
+        }
     }
 }

@@ -1267,6 +1267,7 @@
     <Content Include="View\ArtistPage\Update.aspx" />
     <Content Include="View\Carts.aspx" />
     <Content Include="View\CartPage\Delete.aspx" />
+    <Content Include="View\DeleteAccount.aspx" />
     <Content Include="View\Reports.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\Login.aspx" />
@@ -1429,6 +1430,13 @@
     </Compile>
     <Compile Include="View\CartPage\Delete.aspx.designer.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeleteAccount.aspx.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\DeleteAccount.aspx.designer.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Reports.aspx.cs">
       <DependentUpon>Reports.aspx</DependentUpon>

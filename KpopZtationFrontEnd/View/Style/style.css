@@ -97,3 +97,16 @@ input[type="submit"], a {
         justify-content: space-around;
         gap: 0.5rem;
     }
+
+.table {
+    margin-top: 1rem;
+    border-collapse: collapse;
+    border-radius: 0.5rem;
+    border-style: hidden;
+    box-shadow: 0 0 0 0.125rem lightseagreen;
+}
+
+.table td {
+    border: 0.125rem solid lightseagreen;
+    padding: 0.25rem 0.5rem;
+}

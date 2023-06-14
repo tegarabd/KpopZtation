@@ -67,6 +67,10 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         private System.Threading.SendOrPostCallback UpdateCustomerOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetCustomersOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteCustomerOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -161,6 +165,12 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         
         /// <remarks/>
         public event UpdateCustomerCompletedEventHandler UpdateCustomerCompleted;
+        
+        /// <remarks/>
+        public event GetCustomersCompletedEventHandler GetCustomersCompleted;
+        
+        /// <remarks/>
+        public event DeleteCustomerCompletedEventHandler DeleteCustomerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -762,6 +772,62 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCustomers", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetCustomers() {
+            object[] results = this.Invoke("GetCustomers", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCustomersAsync() {
+            this.GetCustomersAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetCustomersAsync(object userState) {
+            if ((this.GetCustomersOperationCompleted == null)) {
+                this.GetCustomersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCustomersOperationCompleted);
+            }
+            this.InvokeAsync("GetCustomers", new object[0], this.GetCustomersOperationCompleted, userState);
+        }
+        
+        private void OnGetCustomersOperationCompleted(object arg) {
+            if ((this.GetCustomersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCustomersCompleted(this, new GetCustomersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteCustomer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string DeleteCustomer(int id) {
+            object[] results = this.Invoke("DeleteCustomer", new object[] {
+                        id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteCustomerAsync(int id) {
+            this.DeleteCustomerAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteCustomerAsync(int id, object userState) {
+            if ((this.DeleteCustomerOperationCompleted == null)) {
+                this.DeleteCustomerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteCustomerOperationCompleted);
+            }
+            this.InvokeAsync("DeleteCustomer", new object[] {
+                        id}, this.DeleteCustomerOperationCompleted, userState);
+        }
+        
+        private void OnDeleteCustomerOperationCompleted(object arg) {
+            if ((this.DeleteCustomerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteCustomerCompleted(this, new DeleteCustomerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1261,6 +1327,58 @@ namespace KpopZtationFrontEnd.WebServiceReference {
         private object[] results;
         
         internal UpdateCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetCustomersCompletedEventHandler(object sender, GetCustomersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCustomersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCustomersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void DeleteCustomerCompletedEventHandler(object sender, DeleteCustomerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteCustomerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

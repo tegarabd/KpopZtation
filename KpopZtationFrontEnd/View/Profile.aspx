@@ -58,5 +58,10 @@
                 <asp:Button ID="ButtonUpdate" runat="server" Text="Update" OnClick="ButtonUpdate_Click" Width="100%" />
             </asp:TableCell>
         </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell ColumnSpan="2">
+                <a href="DeleteAccount.aspx" >Delete Account</a>
+            </asp:TableCell>
+        </asp:TableRow>
     </asp:Table>
 </asp:Content>
